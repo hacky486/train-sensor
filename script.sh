@@ -15,7 +15,7 @@ while true; do
   if [ "$ORIG_SIZE" == "$CUR_SIZE" ]; then
     sleep 30
   else
-    mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -t $MQTT_TOPIC -m 1
+    mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASSWORD -t $MQTT_TOPIC -m 1
     pkill rtl_fm
     sleep $HOLDOFF_TIME
     rtl_fm -d $DEVICE_INDEX -f $FREQUENCY -M fm -l $SQUELCH -g -4 | xxd | tee -a /tmp/output.txt >> /dev/null &
